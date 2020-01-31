@@ -11,11 +11,11 @@ P6 = " "
 P7 = " "
 P8 = " "
 P9 = " "
-Turn = "X"
-Winner = " "
-tst = 0
-TurnCount = 0
-WinConditMet = 0
+Turn = "X"                 #remembers who's turn it is
+Winner = " "               #who's the winner
+PreventFalsePos = 0        #var i'm using to prevent some fals positives or skipped turns.
+TurnCount = 0              #counts number of turns
+WinConditMet = 0           #Has the win condition been met?
 
 print ("welcome to tic tac toe")   #some intro stuff
 print ("X what's your first move?")
@@ -42,11 +42,11 @@ def CheckWin():        #checks if the game has been won
     if P3 == P5 == P7:
       WinConditMet = 1
 
-  elif P9 != " ":
+  elif P9 != " ":          #and if anyone knows why TF this ain't working please tell me.
     Winner = P9
-    if P7 == P8 == P9:
+    if P9 == P3 == P6:
       WinConditMet = 1
-    if P3 == P6 == P9:
+    if P9 == P7 == P8:
       WinConditMet = 1
 
 def HasWon():               #checks if someone has won yet
@@ -74,7 +74,7 @@ def MakeMove():            #is called to make a move
   global P9
   global Turn
   global Move
-  global tst 
+  global PreventFalsePos 
   global TurnCount
 
   def DispBoard():          #prints out the board
@@ -90,22 +90,22 @@ def MakeMove():            #is called to make a move
 
   if Move is 1:             #Checks if the players latest input is "1"
     if P1 == " ":           #checks slot 1 is blank
-      if Turn == "X":         #checks who's turn it is
+      if Turn == "X":       #checks who's turn it is
         P1 = "X"            #sets the varble "P1"
-        Turn = "O"            #changes the turn
+        Turn = "O"          #changes the turn
       else:
         P1 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P1 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
         
   elif Move is 2:
@@ -117,15 +117,15 @@ def MakeMove():            #is called to make a move
         P2 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P2 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
         
   elif Move is 3:
@@ -137,15 +137,15 @@ def MakeMove():            #is called to make a move
         P3 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P3 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
         
   elif Move is 4:
@@ -157,15 +157,15 @@ def MakeMove():            #is called to make a move
         P4 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P4 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
       
   elif Move is 5:
@@ -177,15 +177,15 @@ def MakeMove():            #is called to make a move
         P5 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P5 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
 
   elif Move is 6:
@@ -197,15 +197,15 @@ def MakeMove():            #is called to make a move
         P6 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P6 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
       
   elif Move is 7:
@@ -217,15 +217,15 @@ def MakeMove():            #is called to make a move
         P7 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P7 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
       
   elif Move is 8:
@@ -237,15 +237,15 @@ def MakeMove():            #is called to make a move
         P8 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P8 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
       
   elif Move is 9:
@@ -257,15 +257,15 @@ def MakeMove():            #is called to make a move
         P9 = "O"
         Turn = "X"
       DispBoard()
-      tst = 1
+      PreventFalsePos = 1
     elif P9 != " ":
-      if tst == 0:
+      if PreventFalsePos == 0:
         print ("That space is already taken! Try again!")
         Move = int(input())
-        tst = 1
+        PreventFalsePos = 1
       else:
         Move = int(input())
-        tst = 0
+        PreventFalsePos = 0
         return MakeMove()
       
   else:
