@@ -24,6 +24,7 @@ Move = int(input())          # sets "move" to an interger the player imputs
 def CheckWin():        #checks if the game has been won
   global Winner
   global WinConditMet
+  
   if P1 != " ":    #checks if P1 or the first slot is not blank
     Winner = P1    #changes the var winner from blank to whatever is in P1
     if P1 == P2 == P3:   #checks if the top row is all the same
@@ -33,7 +34,7 @@ def CheckWin():        #checks if the game has been won
     if P1 == P4 == P7:
       WinConditMet = 1
 
-  elif P5 != " ":
+  if P5 != " ":          #these are if rather than elif because the elif was not getting called
     Winner = P5
     if P4 == P5 == P6:
       WinConditMet = 1
@@ -42,7 +43,7 @@ def CheckWin():        #checks if the game has been won
     if P3 == P5 == P7:
       WinConditMet = 1
 
-  elif P9 != " ":          #and if anyone knows why TF this ain't working please tell me.
+  if P9 != " ":        
     Winner = P9
     if P9 == P3 == P6:
       WinConditMet = 1
