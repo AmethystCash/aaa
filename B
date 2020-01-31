@@ -16,15 +16,29 @@ Winner = " "               #who's the winner
 PreventFalsePos = 0        #var i'm using to prevent some fals positives or skipped turns.
 TurnCount = 0              #counts number of turns
 WinConditMet = 0           #Has the win condition been met?
+Draw = 0
 
 print ("welcome to tic tac toe")   #some intro stuff
 print ("X what's your first move?")
 Move = int(input())          # sets "move" to an interger the player imputs
 
+def DetectDraw():
+  if  P1 != " ":
+    if  P2 != " ":
+      if  P3 != " ":
+        if  P4 != " ":
+          if  P5 != " ":
+            if  P6 != " ":
+              if  P7 != " ":
+                if  P8 != " ":
+                  if  P9 != " ":
+                    print ("Draw!")
+                    exit()
+
 def CheckWin():        #checks if the game has been won
   global Winner
   global WinConditMet
-  
+
   if P1 != " ":    #checks if P1 or the first slot is not blank
     Winner = P1    #changes the var winner from blank to whatever is in P1
     if P1 == P2 == P3:   #checks if the top row is all the same
@@ -34,7 +48,7 @@ def CheckWin():        #checks if the game has been won
     if P1 == P4 == P7:
       WinConditMet = 1
 
-  if P5 != " ":          #these are if rather than elif because the elif was not getting called
+  if P5 != " ":
     Winner = P5
     if P4 == P5 == P6:
       WinConditMet = 1
@@ -64,6 +78,7 @@ def HasWon():               #checks if someone has won yet
         exit()             #kills the game
 
 def MakeMove():            #is called to make a move
+  #DetectDraw()
   global P1                #these are all set as globals so that when the yare referanced later they are not local because python just makes a new varible rather than scanning for global ones by default. this tells it scan for the global value
   global P2
   global P3
@@ -89,7 +104,8 @@ def MakeMove():            #is called to make a move
     print ("What's your next move?")
     TurnCount += 1          #increases the turncount by 1 at the end of each move for the HasWon function
 
-  if Move is 1:             #Checks if the players latest input is "1"
+  if Move is 1:
+    DetectDraw()             #Checks if the players latest input is "1"
     if P1 == " ":           #checks slot 1 is blank
       if Turn == "X":       #checks who's turn it is
         P1 = "X"            #sets the varble "P1"
@@ -104,6 +120,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -124,6 +141,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -144,6 +162,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -164,6 +183,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -184,6 +204,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -204,6 +225,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -224,6 +246,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -244,6 +267,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -264,6 +288,7 @@ def MakeMove():            #is called to make a move
         print ("That space is already taken! Try again!")
         Move = int(input())
         PreventFalsePos = 1
+        TurnCount -= 1
       else:
         Move = int(input())
         PreventFalsePos = 0
@@ -274,5 +299,5 @@ def MakeMove():            #is called to make a move
     Move = int(input())
 
 
-for TurnCount in range(0, 9):
+while Draw == 0:
   MakeMove()
