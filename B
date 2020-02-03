@@ -11,34 +11,19 @@ P6 = " "
 P7 = " "
 P8 = " "
 P9 = " "
-Turn = "X"                 #remembers who's turn it is
-Winner = " "               #who's the winner
-PreventFalsePos = 0        #var i'm using to prevent some fals positives or skipped turns.
-TurnCount = 0              #counts number of turns
-WinConditMet = 0           #Has the win condition been met?
-Draw = 0
+Turn = "X"
+Winner = " "
+tst = 0
+TurnCount = 0
+WinConditMet = 0
 
 print ("welcome to tic tac toe")   #some intro stuff
 print ("X what's your first move?")
 Move = int(input())          # sets "move" to an interger the player imputs
 
-def DetectDraw():
-  if  P1 != " ":
-    if  P2 != " ":
-      if  P3 != " ":
-        if  P4 != " ":
-          if  P5 != " ":
-            if  P6 != " ":
-              if  P7 != " ":
-                if  P8 != " ":
-                  if  P9 != " ":
-                    print ("Draw!")
-                    exit()
-
 def CheckWin():        #checks if the game has been won
   global Winner
   global WinConditMet
-
   if P1 != " ":    #checks if P1 or the first slot is not blank
     Winner = P1    #changes the var winner from blank to whatever is in P1
     if P1 == P2 == P3:   #checks if the top row is all the same
@@ -57,11 +42,11 @@ def CheckWin():        #checks if the game has been won
     if P3 == P5 == P7:
       WinConditMet = 1
 
-  if P9 != " ":        
+  if P9 != " ":
     Winner = P9
-    if P9 == P3 == P6:
+    if P7 == P8 == P9:
       WinConditMet = 1
-    if P9 == P7 == P8:
+    if P3 == P6 == P9:
       WinConditMet = 1
 
 def HasWon():               #checks if someone has won yet
@@ -76,228 +61,34 @@ def HasWon():               #checks if someone has won yet
       elif Winner == "O":  #checks if o won
         print ("O wins!")
         exit()             #kills the game
-
-def MakeMove():            #is called to make a move
-  #DetectDraw()
-  global P1                #these are all set as globals so that when the yare referanced later they are not local because python just makes a new varible rather than scanning for global ones by default. this tells it scan for the global value
-  global P2
-  global P3
-  global P4
-  global P5
-  global P6
-  global P7
-  global P8
-  global P9
-  global Turn
-  global Move
-  global PreventFalsePos 
-  global TurnCount
-
-  def DispBoard():          #prints out the board
+        
+for x in range(1,10):
+    #print(eval("P"+str(x)))
+    if Move is (eval(str(x))):             #Checks if the players latest input is "1"
+      if (eval("P"+str(x))) == " ":           #checks slot 1 is blank
+        if Turn == "X":         #checks who's turn it is
+          P1 = "X"            #sets the varble "P1"
+          Turn = "O"            #changes the turn
+          x += 1
+        else:
+          P1 = "O"
+          Turn = "X"
+        tst = 1
+      elif (eval("P"+str(x))) != " ":
+        if tst == 0:
+          print ("That space is already taken! Try again!")
+          Move = int(input())
+          tst = 1
+        else:
+          Move = int(input())
+          tst = 0
     global TurnCount
-    print (P1, "¦", P2,"¦", P3) #prints the varible P1 followed by ¦ and so on.
+    print (P1, "¦", P2,"¦", P3) 
     print ("---------")
     print (P4, "¦", P5,"¦", P6)
     print ("---------")  
     print (P7, "¦", P8,"¦", P9)
-    HasWon()                #calls the "HasWon" function made earlier.
+    HasWon()
     print ("What's your next move?")
-    TurnCount += 1          #increases the turncount by 1 at the end of each move for the HasWon function
-
-  if Move is 1:
-    DetectDraw()             #Checks if the players latest input is "1"
-    if P1 == " ":           #checks slot 1 is blank
-      if Turn == "X":       #checks who's turn it is
-        P1 = "X"            #sets the varble "P1"
-        Turn = "O"          #changes the turn
-      else:
-        P1 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P1 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-        
-  elif Move is 2:
-    if P2 == " ":
-      if Turn == "X":
-        P2 = "X"
-        Turn = "O"
-      else:
-        P2 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P2 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-        
-  elif Move is 3:
-    if P3 == " ":
-      if Turn == "X":
-        P3 = "X"
-        Turn = "O"
-      else:
-        P3 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P3 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-        
-  elif Move is 4:
-    if P4 == " ":
-      if Turn == "X":
-        P4 = "X"
-        Turn = "O"
-      else:
-        P4 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P4 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-      
-  elif Move is 5:
-    if P5 == " ":
-      if Turn == "X":
-        P5 = "X"
-        Turn = "O"
-      else:
-        P5 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P5 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-
-  elif Move is 6:
-    if P6 == " ":
-      if Turn == "X":
-        P6 = "X"
-        Turn = "O"
-      else:
-        P6 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P6 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-      
-  elif Move is 7:
-    if P7 == " ":
-      if Turn == "X":
-        P7 = "X"
-        Turn = "O"
-      else:
-        P7 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P7 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-      
-  elif Move is 8:
-    if P8 == " ":
-      if Turn == "X":
-        P8 = "X"
-        Turn = "O"
-      else:
-        P8 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P8 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-      
-  elif Move is 9:
-    if P9 == " ":
-      if Turn == "X":
-        P9 = "X"
-        Turn = "O"
-      else:
-        P9 = "O"
-        Turn = "X"
-      DispBoard()
-      PreventFalsePos = 1
-    elif P9 != " ":
-      if PreventFalsePos == 0:
-        print ("That space is already taken! Try again!")
-        Move = int(input())
-        PreventFalsePos = 1
-        TurnCount -= 1
-      else:
-        Move = int(input())
-        PreventFalsePos = 0
-        return MakeMove()
-      
-  else:
-    print ("That's an invalid move. Please use number 1 ~ 9.")
     Move = int(input())
-
-
-while Draw == 0:
-  MakeMove()
+    TurnCount += 1     
